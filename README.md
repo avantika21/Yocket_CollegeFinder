@@ -5,6 +5,7 @@ I've included test cases bases on valid and invalid (including edge cases) test 
 
 I have selected below tool stack to work for this assignment:
 
+- Automation Framework: Selenium 4
 - Language: Java(v 1.8)
 - Test Engine: TestNG
 - Build Tool: Maven
