@@ -1,7 +1,7 @@
 ### Yocket College Finder-Masters Automation Assignment
 
 The purpose of this project is to create and automation flow for shortlisting a Masters College on Yocket and I have built a Page Object Model Framework for the same. 
-I've included test cases bases on valid and invalid (including edge cases) test data for my testing. 
+I've included test cases based on valid and invalid (including edge cases) test data for my testing. 
 
 I have selected below tool stack to work for this assignment:
 
