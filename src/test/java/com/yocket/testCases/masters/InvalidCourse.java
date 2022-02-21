@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class LoginAndEnterValidDetails extends TestBase {
+public class InvalidCourse extends TestBase {
     LandingPage landingPage;
     LoginPage loginPage;
     HomePage homePage;
@@ -17,10 +17,10 @@ public class LoginAndEnterValidDetails extends TestBase {
     CollegeFinderMasters collegeFinderMasters;
     MastersResultPage mastersResultPage;
 
-    String sheetName = "mastersDetails";
+    String sheetName = "invalidCourse";
+    //String expectedErrorMsg= "Required field";
 
-    //To initialise TestBase constructor first
-    public LoginAndEnterValidDetails() {
+    public InvalidCourse() {
         super();
     }
 
@@ -33,6 +33,7 @@ public class LoginAndEnterValidDetails extends TestBase {
         collegeFinderHomePage = new CollegeFinderHomePage();
         collegeFinderMasters = new CollegeFinderMasters();
     }
+
     @DataProvider
     public Object[][] getTestData() {
         Object data[][] = TestUtil.getTestData(sheetName);
@@ -41,22 +42,13 @@ public class LoginAndEnterValidDetails extends TestBase {
     }
 
     @Test(dataProvider = "getTestData")
-    public void loginAndValidDetails(String Country, String Course,
-                                     String College, String Major, String GPA, String englishScore,
-                                     String aptiScore, String workExNo, String projectNo) throws InterruptedException {
-        loginPage = landingPage.login();
-        homePage = loginPage.login(prop.getProperty("phoneNumber"));
+    public void invalidCourse(String Country, String Course) throws InterruptedException {
+//        loginPage = landingPage.login();
+//        homePage = loginPage.login(prop.getProperty("phoneNumber"));
         collegeFinderHomePage = homePage.clickCollegeFinderBtn();
         collegeFinderMasters = collegeFinderHomePage.clickMasters();
-        collegeFinderMasters.fillStep1Details(Country,Course);
-        collegeFinderMasters.fillStep2Details(College,Major,GPA);
-        collegeFinderMasters.fillStep3Details(englishScore,aptiScore);
-        mastersResultPage = collegeFinderMasters.fillStep4Details(workExNo,projectNo);
-        mastersResultPage.sortAndShortlist();
-        String expectedUnivName = mastersResultPage.getUnivName();
-        String actualUnivName = mastersResultPage.getActualUnivName();
-        Assert.assertEquals(expectedUnivName, actualUnivName);
-
+        collegeFinderMasters.invalidCourse(Country, Course);
+        Assert.assertNotNull(collegeFinderMasters.getCourseErrorMsg());
     }
 
     @AfterMethod

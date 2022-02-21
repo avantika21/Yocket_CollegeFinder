@@ -21,7 +21,7 @@ public class CollegeFinderMasters extends TestBase {
 
 
     //Step 1 Object repo
-   @FindBy(xpath = "//span[normalize-space()= 'United Kingdom']")
+    @FindBy(xpath = "//span[normalize-space()= 'United Kingdom']")
 
     WebElement selectCountry;
 
@@ -31,10 +31,10 @@ public class CollegeFinderMasters extends TestBase {
     @FindBy(xpath = "//button[normalize-space()='Next']")
     WebElement step1NextBtn;
 
-    @FindBy (id = "zsiq_agtpic")
+    @FindBy(id = "zsiq_agtpic")
     WebElement chatBtn;
 
-    @FindBy (xpath = "//div[@class='win_close sqico-larrow']")
+    @FindBy(xpath = "//div[@class='win_close sqico-larrow']")
     WebElement closeChat;
 
     //Step 2 Object Repo
@@ -66,7 +66,7 @@ public class CollegeFinderMasters extends TestBase {
     @FindBy(xpath = "//div[contains(text(),'GMAT')]")
     WebElement aptitudeTaken;
 
-    @FindBy(id="total_gmat_score")
+    @FindBy(id = "total_gmat_score")
     WebElement aptitudeScore;
 
     @FindBy(xpath = "//button[contains(@type,'submit')]")
@@ -84,11 +84,27 @@ public class CollegeFinderMasters extends TestBase {
     @FindBy(xpath = "//button[normalize-space()='Find Universities']")
     WebElement findUnivBtn;
 
-    public CollegeFinderMasters(){
+    @FindBy(xpath = "//div[@class='grid grid-cols-2 gap-6 mt-8']//div[1]//span//span")
+    WebElement countryErrorMsg;
+
+    @FindBy(xpath = "//div[@class='grid grid-cols-2 gap-6 mt-8']//div[2]//span[1]//span[1]")
+    WebElement courseErrorMsg;
+
+    @FindBy(xpath="//div[@class='grid grid-cols-2 gap-6 mt-8']/div[1]/span[1]/span[1]")
+    WebElement collegeErrorMsg;
+
+    @FindBy (xpath ="//div[@class='grid grid-cols-2 gap-6 mt-8']//div[3]//span[1]//span[1]")
+    WebElement majorErrorMsg;
+
+    @FindBy (xpath ="//div[@class='grid grid-cols-2 gap-6 mt-8']//div[4]//span[1]//span[1]")
+    WebElement GPAErrorMsg;
+
+
+    public CollegeFinderMasters() {
         PageFactory.initElements(driver, this);
     }
 
-    public void fillStep1Details(String Country, String Course){
+    public void fillStep1Details(String Country, String Course) {
         enterCountry.sendKeys(Country);
         wait.until(ExpectedConditions.visibilityOf(selectCountry));
         selectCountry.click();
@@ -98,7 +114,7 @@ public class CollegeFinderMasters extends TestBase {
         step1NextBtn.click();
     }
 
-    public void fillStep2Details(String College, String Major, String GPA){
+    public void fillStep2Details(String College, String Major, String GPA) {
         enterCollege.sendKeys(College);
         wait.until(ExpectedConditions.visibilityOf(selectCollege));
         selectCollege.click();
@@ -109,7 +125,7 @@ public class CollegeFinderMasters extends TestBase {
         step2NextBtn.click();
     }
 
-    public void fillStep3Details(String englishScore,String aptiScore){
+    public void fillStep3Details(String englishScore, String aptiScore) {
         engishTest.click();
         enterScore.sendKeys(englishScore);
         aptitudeTaken.click();
@@ -117,7 +133,7 @@ public class CollegeFinderMasters extends TestBase {
         step3NextBtn.click();
     }
 
-    public MastersResultPage fillStep4Details(String workExNo, String projectNo){
+    public MastersResultPage fillStep4Details(String workExNo, String projectNo) {
         workEx.sendKeys(workExNo);
         researchPaper.click();
         projectNum.sendKeys(projectNo);
@@ -126,13 +142,14 @@ public class CollegeFinderMasters extends TestBase {
     }
 
 
-
-    public void invalidCountry(String Country){
+    public void invalidCountry(String Country) {
         enterCountry.sendKeys(Country);
         step1NextBtn.click();
+        wait.until(ExpectedConditions.visibilityOf(countryErrorMsg));
     }
 
-    public void invalidCourse(String Country, String Course){
+    public void invalidCourse(String Country, String Course) {
+
         enterCountry.sendKeys(Country);
         wait.until(ExpectedConditions.visibilityOf(selectCountry));
         selectCountry.click();
@@ -145,12 +162,12 @@ public class CollegeFinderMasters extends TestBase {
         step2NextBtn.click();
     }
 
-    public void invalidMajor(String College, String Major,String GPA) {
+    public void invalidMajor(String College, String Major) {
+
         enterCollege.sendKeys(College);
         wait.until(ExpectedConditions.visibilityOf(selectCollege));
         selectCollege.click();
         enterMajor.sendKeys(Major);
-        enterGPA.sendKeys(GPA);
         step2NextBtn.click();
     }
 
@@ -165,19 +182,25 @@ public class CollegeFinderMasters extends TestBase {
         step2NextBtn.click();
     }
 
+    public String getCountryErrorMsg(){
+        return countryErrorMsg.getText();
+    }
 
+    public String getCourseErrorMsg(){
+        return courseErrorMsg.getText();
+    }
 
+    public String getCollegeErrorMsg(){
+        return collegeErrorMsg.getText();
+    }
 
+    public String getMajorErrorMsg(){
+        return majorErrorMsg.getText();
+    }
 
-
-
-
-
-
-
-
-
-
+    public String getGPAErrorMsg(){
+        return GPAErrorMsg.getText();
+    }
 
 
 }
