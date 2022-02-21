@@ -21,4 +21,4 @@ I have created this project with few things in consideration:
  
 Execution starting point is from [testng.xml](https://github.com/avantika21/Yocket_CollegeFinder/blob/master/src/main/resources/testng.xml)
 
-Execution Result is stored in [output directory](https://github.com/avantika21/Yocket_CollegeFinder/blob/master/test-output/Extent.html) where all testing scenarios are covered for reference.
+You can find overall testing status [here](https://github.com/avantika21/Yocket_CollegeFinder/blob/master/test-output/Extent.html). Please open the report in browser to get a clear view!
